@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="mb-2 mt-5 text-center text-light"><strong>Hasil Pencarian</strong></h1>
+<div class="container">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4"></div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if course %}
+          <h3 class="card-title"><strong>{{ course.name }}</strong></h3>
+          <p class="card-text">
+            <strong>Email:</strong> {{ course.email }}<br />
+            <strong>Nomor HP:</strong> +62{{ course.phone_number }}<br />
+            <strong>Tanggal Daftar:</strong> {{ course.registration_date }}<br />
+            <strong>Jenis Kelamin:</strong> {{ course.gender }}<br />
+            <strong>Mata Pelajaran:</strong> {{ course.subject }}
+          </p>
+          {% else %}
+          <p class="card-text">Tidak ada hasil yang ditemukan.</p>
+          {% endif %}
+          <div>
+            <a href="{{ url_for('menu') }}" class="btn btn-success">Kembali ke Menu</a>
+            <a href="{{ url_for('search_member') }}" class="btn btn-info">Cari Lagi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

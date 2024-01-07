@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="mb-2 mt-5 text-center text-light"><strong>Daftar Data Peserta Kursus</strong></h1>
+<div class="text-center">
+  <a href="{{ url_for('menu') }}" class="btn btn-outline-light mb-4">Kembali ke Menu</a>
+</div>
+<div class="row">
+  {% for course in courses %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><strong>{{ course.name }}</strong></h5>
+        <p class="card-text">
+          <strong>Email :</strong> {{ course.email }}<br />
+          <strong>Nomor HP :</strong> +62{{ course.phone_number }}<br />
+          <strong>Tanggal Daftar :</strong> {{ course.registration_date }}<br />
+          <strong>Jenis Kelamin :</strong> {{ course.gender }}<br />
+          <strong>Mata Pelajaran :</strong> {{ course.subject }}<br />
+        </p>
+        <div class="text-center">
+          <a href="#" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ course.id }}">Detail</a>
+          <a href="{{ url_for('course_edit', id=course.id) }}" class="btn btn-warning btn-sm">Edit</a>
+          <a href="{{ url_for('course_delete', id=course.id) }}" class="btn btn-danger btn-sm">Hapus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="detailModal{{ course.id }}" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailModalLabel">Detail Peserta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <h3 class="card-title"><strong>{{ course.name }}</strong></h3>
+            <p class="card-text">
+              <strong>Email</strong> {{ course.email }}<br />
+              <strong>Nomor HP</strong> +62{{ course.phone_number }}<br />
+              <strong>Tanggal Daftar</strong> {{ course.registration_date }}<br />
+              <strong>Jenis Kelamin</strong> {{ course.gender }}<br />
+              <strong>Mata Pelajaran</strong> {{ course.subject }}
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="mt-5 text-light"><strong>Hapus Data Peserta Kursus</strong></h1>
+<p class="text-light">Kamu yakin ingin menghapus data "<strong>{{ course.name }}</strong>"?</p>
+<form method="post">
+  <button type="submit" class="btn btn-danger mt-2">Hapus</button>
+  <a href="{{ url_for('course_list') }}" class="btn btn-secondary mt-2">Batal</a>
+</form>
+{% endblock %}
